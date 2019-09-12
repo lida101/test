@@ -1,0 +1,26 @@
+#spring相关配置信息
+spring:
+    datasource:
+        type: com.zaxxer.hikari.HikariDataSource
+        url: jdbc:oracle:thin:@//10.19.36.28:1521/gffp
+        name: apszj
+        username: apszj
+        password: apszj_#A3
+    jpa:
+        database: ORACLE
+        hibernate:
+            ddl-auto: none
+            naming-strategy: org.hibernate.cfg.ImprovedNamingStrategy
+            use-new-id-generator-mappings: true
+        properties:
+            hibernate:
+                dialect: org.hibernate.dialect.Oracle10gDialect
+                show_sql: true
+                format_sql: false
+    aop:
+      proxy-target-class: true
+
+server:
+    port: 8300
+
+

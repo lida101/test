@@ -1,0 +1,4 @@
+#spring相关配置信息
+spring:
+    profiles:
+        active: dev

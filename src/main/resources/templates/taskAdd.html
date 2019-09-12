@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>任务列表</title>
+    <link rel="stylesheet" th:href="@{css/bootstrap.css}"/>
+</head>
+<body>
+<div th:include="header::header(1)"></div>
+<div>
+    <div class="container">
+        <form role="form" action="create" method="post">
+
+            <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+
+            <div class="form-group">
+                <label for="taskName">任务名称</label>
+                <input type="text" class="form-control" id="taskName" name="taskName"/>
+            </div>
+
+            <div class="form-group">
+                <label for="taskGroup">任务组</label>
+                <input type="text" class="form-control" id="taskGroup" name="taskGroup"/>
+            </div>
+
+            <div class="form-group">
+                <label for="cronExpression">Cron表达式</label>
+                <input type="text" class="form-control" id="cronExpression" name="cronExpression"/>
+            </div>
+
+            <div class="form-group">
+                <label for="execService">执行服务名</label>
+                <input type="text" class="form-control" id="execService" name="execService"/>
+            </div>
+
+            <div class="form-group">
+                <label for="execMethod">执行方法名</label>
+                <input type="text" class="form-control" id="execMethod" name="execMethod"/>
+            </div>
+
+            <div class="form-group">
+                <label for="params">方法参数</label>
+                <input type="text" class="form-control" id="params" name="params"/>
+            </div>
+
+            <div class="form-group">
+                <label for="isAuto">是否默认启动:</label>
+                <select class="form-control" id="isAuto" name="isAuto">
+                    <option value="Y">是</option>
+                    <option value="N">否</option>
+                </select>
+            </div>
+
+            <div class="text-center ">
+                <button type="submit" class="btn btn-default">提交</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+</body>
+</html>

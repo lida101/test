@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+</head>
+<body>
+<div th:fragment="header(index)">
+    <nav class="navbar navbar-default" role="navigation">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="/">定时任务</a>
+            </div>
+            <div>
+                <ul class="nav navbar-nav">
+                    <li th:class="${index}==1?'active'">
+                        <a href="/">任务列表</a>
+                    </li>
+                    <li th:class="${index}==2?'active'">
+                        <a href="logList">任务日志</a>
+                    </li>
+                    <li th:class="${index}==3?'active'">
+                        <a href="users">用户系统</a>
+                    </li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/logout" th:href="@{#}" onclick="document.getElementById('form').submit();">
+                            注销
+                        </a>
+                        <form style="visibility: hidden" id="form" method="post" action="#" th:action="@{/logout}"></form>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</div>
+</body>
+</html>

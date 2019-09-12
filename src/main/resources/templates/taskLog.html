@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>任务列表</title>
+    <link rel="stylesheet" th:href="@{css/bootstrap.css}" />
+    <script th:src="@{js/jquery-3.2.1.min.js}"></script>
+    <script th:src="@{js/task.js}"></script>
+</head>
+<body>
+<div th:include="header::header(1)"></div>
+<div>
+    <input type="hidden" id="taskId" th:value="${taskId}"/>
+    <table class="table table-striped table-bordered table-hover table-condensed">
+        <tr>
+            <td>任务名称</td>
+            <td>任务组</td>
+            <td>开始时间</td>
+            <td>结束时间</td>
+            <td>执行结果</td>
+            <td style="width: 40%">错误信息</td>
+        </tr>
+        <tr th:each="log : ${page.content}" th:class="${#strings.indexOf(log.isSuccess,'失败') ge 0}?'danger'">
+            <td th:text="${log.taskConfig.taskName}"></td>
+            <td th:text="${log.taskConfig.taskGroup}"></td>
+            <td th:text="${log.startTime}"></td>
+            <td th:text="${log.endTime}"></td>
+            <td th:text="${log.isSuccess}"></td>
+            <td th:text="${log.message}"></td>
+        </tr>
+    </table>
+</div>
+<div style="float: left">
+    <div th:include="page::page"></div>
+</div>
+</body>
+</html>

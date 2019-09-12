@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8" />
+    <title>Title</title>
+</head>
+<body>
+<div th:fragment="page">
+    <ul class="pagination" data-th-if="${((page.totalPage) le 7) and ((page.totalPage) ge 1) }">
+        <!-- 上一页 -->
+        <li class="page-item" data-th-if="${page.page gt 1  }">
+            <a th:onclick="'toPage(' + ${page.page - 1}+ ')'" class="page-link" aria-label="Previous">
+                <span aria-hidden="true">«</span>
+            </a>
+        </li>
+
+        <!-- 迭代生成页码 -->
+        <li class="page-item" data-th-each="i : ${#numbers.sequence(0, page.totalPage-1)}"
+            data-th-classappend="${(page.page) eq i+1} ? 'active' : ''" >
+            <a class="page-link" th:onclick="'toPage(' + ${i+1}+ ')'">
+                <span data-th-text="${i+1}"></span>
+            </a>
+        </li>
+
+        <!-- 下一页 -->
+        <li class="page-item" data-th-if="${page.page lt page.totalPage  }">
+            <a th:onclick="'toPage(' + ${page.page+1}+ ')'" class="page-link"  aria-label="Next">
+                <span aria-hidden="true">»</span>
+            </a>
+        </li>
+
+    </ul>
+    <!-- 处理页数大于7 的情况 -->
+    <ul class="pagination" data-th-if="${page.totalPage gt 7}" >
+        <!-- 上一页 -->
+        <li class="page-item" data-th-if="${page.page gt 1  }">
+            <a th:onclick="'toPage(' + ${page.page - 1}+ ')'" class="page-link"  aria-label="Previous">
+                <span aria-hidden="true">«</span>
+            </a>
+        </li>
+
+        <!-- 首页 -->
+        <li class="page-item" data-th-classappend="${(page.page) eq 1} ? 'active' : ''" >
+            <a th:onclick="'toPage(1)'" class="page-link" >1</a>
+        </li>
+
+
+        <!-- 当前页面小于等于4 -->
+        <li class="page-item" data-th-if="${page.page le 4}" data-th-each="i : ${#numbers.sequence(2,5)}"
+            data-th-classappend="${page.page eq i} ? 'active' : ''" >
+            <a class="page-link" th:onclick="'toPage(' + ${i}+ ')'">
+                <span data-th-text="${i}"></span>
+            </a>
+        </li>
+
+        <li class="page-item disabled" data-th-if="${page.page le 4}">
+            <a href="javascript:void(0);" class="page-link">
+                <span aria-hidden="true">...</span>
+            </a>
+        </li>
+
+        <!-- 最后一页与当前页面之差，小于等于3 -->
+        <li class="page-item disabled" data-th-if="${(page.totalPage-page.page) le 3}">
+            <a href="javascript:void(0);" class="page-link">
+                <span aria-hidden="true">...</span>
+            </a>
+        </li>
+        <li class="page-item" data-th-if="${(page.totalPage-page.page) le 3}" data-th-each="i : ${#numbers.sequence(page.totalPage-4, page.totalPage-1)}"
+            data-th-classappend="${(page.page) eq i} ? 'active' : ''" >
+            <a class="page-link" th:onclick="'toPage(' + ${i}+ ')'">
+                <span data-th-text="${i}"></span>
+            </a>
+        </li>
+
+        <!-- 最后一页与当前页面之差大于3，且  当前页面大于4-->
+
+        <li class="page-item disabled" data-th-if="${(page.page gt 4) and ((page.totalPage-page.page) gt 3 )}">
+            <a href="javascript:void(0);" class="page-link">
+                <span aria-hidden="true">...</span>
+            </a>
+        </li>
+        <li class="page-item" data-th-if="${(page.page gt 4) and ((page.totalPage-page.page) gt 3 )}" >
+            <a th:onclick="'toPage(' + ${page.page-1}+ ')'" class="page-link" data-th-text="${page.page-1}"></a>
+        </li>
+        <li class="page-item active" data-th-if="${(page.page gt 4) and ((page.totalPage-page.page) gt 3 )}">
+            <a th:onclick="'toPage(' + ${page.page}+ ')'" class="page-link" data-th-text="${page.page}"></a>
+        </li>
+        <li class="page-item" data-th-if="${(page.page gt 4) and ((page.totalPage-page.page) gt 3 )}">
+            <a th:onclick="'toPage(' + ${page.page + 1}+ ')'"  class="page-link" data-th-text="${page.page} + 1"></a>
+        </li>
+
+        <li class="page-item disabled"  data-th-if="${((page.page) gt 4) and ((page.totalPage-page.page) gt 3 )}">
+            <a href="javascript:void(0);" class="page-link">
+                <span aria-hidden="true">...</span>
+            </a>
+        </li>
+
+        <!-- 最后一页 -->
+        <li class="page-item" data-th-classappend="${page.page eq page.totalPage} ? 'active' : ''" >
+            <a th:onclick="'toPage(' + ${page.totalPage} + ')'" class="page-link" data-th-text="${page.totalPage}"></a>
+        </li>
+
+        <!-- 下一页 -->
+        <li class="page-item" data-th-if="${page.page lt page.totalPage  }">
+            <a th:onclick="'toPage(' + ${page.page+1}+ ')'" class="page-link"  aria-label="Next">
+                <span aria-hidden="true">»</span>
+            </a>
+        </li>
+
+    </ul>
+</div>
+</body>
+</html>

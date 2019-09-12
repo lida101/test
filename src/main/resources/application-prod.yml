@@ -2,10 +2,9 @@
 spring:
     datasource:
         type: com.zaxxer.hikari.HikariDataSource
-        url: jdbc:oracle:thin:@//10.19.36.28:1521/gffp
-        name: apszj
-        username: apszj
-        password: apszj_#A3
+        url: jdbc:oracle:thin:@//xxxx:1521/gffp
+        username: xx
+        password: xx
     jpa:
         database: ORACLE
         hibernate:

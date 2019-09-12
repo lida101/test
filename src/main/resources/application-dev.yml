@@ -2,7 +2,7 @@
 spring:
     datasource:
         type: com.zaxxer.hikari.HikariDataSource
-        url: jdbc:oracle:thin:@172.16.96.61:1521:orcl
+        url: jdbc:oracle:thin:@xxxx:1521:orcl
         username: task
         password: task
     jpa:
